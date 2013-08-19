@@ -4,5 +4,7 @@
     <string name="app_name">OlaMundo</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Ola mundo!</string>
+    <string name="novoTextView">NovoTextView</string>
+    <string name="copiar_texto">Copiar Texto</string>
 
 </resources>
