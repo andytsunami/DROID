@@ -1,9 +1,11 @@
 package com.example.olamundo;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 public class OlaMundoActivity extends Activity {
 
@@ -11,7 +13,15 @@ public class OlaMundoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.principal);
-        Log.i("Ciclo de vida", "onCreate");
+        Button botao = (Button) findViewById(R.id.botao);
+        
+        botao.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Log.i("Ola mundo", "Botão clicado");
+			}
+		});
+        
+        
     }
 
 
