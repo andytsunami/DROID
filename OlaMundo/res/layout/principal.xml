@@ -7,23 +7,29 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OlaMundoActivity" >
-    
-    <EditText 
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+
+    <EditText
         android:id="@+id/EditaTexto"
-        />
-    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/novoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/novoTextView"
-        android:id="@+id/novoText"
-        />
-    <Button 
+        android:text="@string/novoTextView" />
+
+    <Button
+        android:id="@+id/botao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/copiar_texto"
-        android:id="@+id/botao"
-        />
+        android:text="@string/copiar_texto" />
+
+    <ImageView 
+        android:src="@drawable/mypst" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageViewMypst"
+        android:contentDescription="Logo do mypst"/>
 
 </RelativeLayout>

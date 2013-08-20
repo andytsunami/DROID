@@ -17,4 +17,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="logo">
+        <item name="android:contentDescription">logo do site</item>
+    </style>
 </resources>

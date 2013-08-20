@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class OlaMundoActivity extends Activity {
 
@@ -18,6 +19,15 @@ public class OlaMundoActivity extends Activity {
         botao.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Log.i("Ola mundo", "Botão clicado");
+			}
+		});
+        
+        ImageView imageView = (ImageView) findViewById(R.id.imageViewMypst);
+        imageView.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				Log.i("Imagem", "Imagem clicada");
+				
 			}
 		});
         

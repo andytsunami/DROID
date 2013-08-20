@@ -6,5 +6,6 @@
     <string name="hello_world">Ola mundo!</string>
     <string name="novoTextView">NovoTextView</string>
     <string name="copiar_texto">Copiar Texto</string>
+    <string name="logo">Logo</string>
 
 </resources>
