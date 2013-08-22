@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,9 +19,9 @@ public class ListaAlunosActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listagem_alunos);
 
-		String[] alunos = { "Mimi", "Cocó", "Ranheta", "Tizil", "Lambari",
+		final String[] alunos = { "Mimi", "Cocó", "Ranheta", "Tizil", "Lambari",
 				"Havaiana jones", "Feitoza", "Palhaço do satanás",
-				"Fetinho do mal" };
+				"Fetinho do mal","Zé graça", "Palhaço hamburgueiro" };
 		int layout = android.R.layout.simple_list_item_1;
 
 		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
@@ -41,6 +42,18 @@ public class ListaAlunosActivity extends Activity {
 
 			}
 
+		});
+		
+		listaAlunos.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> adapter, View view,
+					int posicao, long id) {
+				
+				Toast.makeText(ListaAlunosActivity.this, "Conteudo: " + alunos[posicao], Toast.LENGTH_SHORT).show();
+				
+				return true;
+			}
 		});
 
 	}
