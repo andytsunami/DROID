@@ -19,7 +19,7 @@ public class ListaAlunosActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listagem_alunos);
 
-		final String[] alunos = { "Mimi", "Cocó", "Ranheta", "Tizil", "Lambari",
+		String[] alunos = { "Mimi", "Cocó", "Ranheta", "Tizil", "Lambari",
 				"Havaiana jones", "Feitoza", "Palhaço do satanás",
 				"Fetinho do mal","Zé graça", "Palhaço hamburgueiro" };
 		int layout = android.R.layout.simple_list_item_1;
@@ -50,7 +50,7 @@ public class ListaAlunosActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
 				
-				Toast.makeText(ListaAlunosActivity.this, "Conteudo: " + alunos[posicao], Toast.LENGTH_SHORT).show();
+				Toast.makeText(ListaAlunosActivity.this, "Conteudo: " + adapter.getItemAtPosition(posicao), Toast.LENGTH_SHORT).show();
 				
 				return true;
 			}
