@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,7 +24,7 @@ public class ListaAlunosActivity extends Activity {
 
 		String[] alunos = { "Mimi", "Cocó", "Ranheta", "Tizil", "Lambari",
 				"Havaiana jones", "Feitoza", "Palhaço do satanás",
-				"Fetinho do mal","Zé graça", "Palhaço hamburgueiro" };
+				"Fetinho do mal", "Zé graça", "Palhaço hamburgueiro" };
 		int layout = android.R.layout.simple_list_item_1;
 
 		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
@@ -45,34 +46,40 @@ public class ListaAlunosActivity extends Activity {
 			}
 
 		});
-		
+
 		listaAlunos.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
-				
-				Toast.makeText(ListaAlunosActivity.this, "Conteudo: " + adapter.getItemAtPosition(posicao), Toast.LENGTH_SHORT).show();
-				
+
+				Toast.makeText(ListaAlunosActivity.this,
+						"Conteudo: " + adapter.getItemAtPosition(posicao),
+						Toast.LENGTH_SHORT).show();
+
 				return true;
 			}
 		});
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
+
 		MenuInflater inflater = this.getMenuInflater();
 		inflater.inflate(R.menu.menu_principal, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		if (item.getTitle().equals("Novo")) {
+			Toast.makeText(ListaAlunosActivity.this,
+					"Clique em: " + item.getTitle() + " - " + item.getItemId(),
+					Toast.LENGTH_SHORT).show();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 }
