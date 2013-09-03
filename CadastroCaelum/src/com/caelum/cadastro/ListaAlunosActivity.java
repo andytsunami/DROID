@@ -2,6 +2,8 @@ package com.caelum.cadastro;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -57,5 +59,20 @@ public class ListaAlunosActivity extends Activity {
 		});
 
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		
+		MenuInflater inflater = this.getMenuInflater();
+		inflater.inflate(R.menu.menu_principal, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
+	
+	
+	
+	
+	
+	
+	
 }

@@ -12,6 +12,12 @@
     <string name="Nota">Nota</string>
     <string name="Gravar">Gravar</string>
     <string name="Foto">Foto do aluno</string>
+    <string name="Novo">Novo</string>
+    <string name="Mapa">Mapa</string>
+    <string name="Sincronizar">Sincronizar</string>
+    <string name="Preferências">Preferências</string>
+    <string name="MaisOpcoes">Mais Opções</string>
+    <string name="BaixarProvas">Baixar Provas</string>
     
 
 </resources>
