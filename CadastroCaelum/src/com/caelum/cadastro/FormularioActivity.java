@@ -3,6 +3,9 @@ package com.caelum.cadastro;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class FormularioActivity extends Activity {
 
@@ -10,6 +13,21 @@ public class FormularioActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
+		
+		Button botao = (Button) findViewById(R.id.botao);
+		
+		botao.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Toast.makeText(FormularioActivity.this, "Você clicou em salvar", Toast.LENGTH_SHORT).show();
+				
+				finish();
+				
+			}
+		});
+		
+		
 	}
 
 	@Override
@@ -18,5 +36,9 @@ public class FormularioActivity extends Activity {
 		getMenuInflater().inflate(R.menu.formulario, menu);
 		return true;
 	}
+	
+	
+	
+	
 
 }
