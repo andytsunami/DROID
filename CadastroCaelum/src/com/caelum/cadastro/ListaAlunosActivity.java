@@ -1,6 +1,7 @@
 package com.caelum.cadastro;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,11 +75,12 @@ public class ListaAlunosActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		if (item.getTitle().equals("Novo")) {
-			Toast.makeText(ListaAlunosActivity.this,
-					"Clique em: " + item.getTitle() + " - " + item.getItemId(),
-					Toast.LENGTH_SHORT).show();
+		if(item.getItemId() == R.id.menu_novo){
+			Intent intent = new Intent(ListaAlunosActivity.this,FormularioActivity.class);
+			startActivity(intent);
+			return false;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 
