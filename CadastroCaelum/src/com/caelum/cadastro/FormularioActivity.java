@@ -1,28 +1,36 @@
 package com.caelum.cadastro;
 
-import android.os.Bundle;
+import com.caelum.cadastro.modelo.Aluno;
+
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class FormularioActivity extends Activity {
+	
 	private FormularioHelper helper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
 		
-		this.helper = new FormularioHelper(this);
 		
 		Button botao = (Button) findViewById(R.id.botao);
+		
+		this.helper = new FormularioHelper(this);
 		
 		botao.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
-				Toast.makeText(FormularioActivity.this, "Você clicou em salvar", Toast.LENGTH_SHORT).show();
+				
+				
+				Aluno aluno = helper.pegaAlunoDoformulario();
+				Toast.makeText(FormularioActivity.this, "Você salvou " + aluno.getNome(), Toast.LENGTH_SHORT).show();
 				
 				finish();
 				

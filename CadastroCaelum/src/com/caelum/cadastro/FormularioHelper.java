@@ -21,7 +21,7 @@ public class FormularioHelper {
 		this.site = (EditText) formulario.findViewById(R.id.site);
 		this.endereco = (EditText) formulario.findViewById(R.id.endereco);
 		this.nota = (RatingBar) formulario.findViewById(R.id.nota);
-		this.foto = (EditText) formulario.findViewById(R.id.imagem);
+		//this.foto = (EditText) formulario.findViewById(R.id.imagem);
 		this.aluno = new Aluno();
 
 	}
@@ -31,7 +31,7 @@ public class FormularioHelper {
 		this.aluno.setTelefone(telefone.getEditableText().toString());
 		this.aluno.setSite(site.getEditableText().toString());
 		this.aluno.setEndereco(endereco.getEditableText().toString());
-		this.aluno.setFoto(foto.getEditableText().toString());
+		//this.aluno.setFoto(foto.getEditableText().toString());
 		this.aluno.setNota(Double.valueOf(nota.getRating()));
 		
 		return this.aluno;
