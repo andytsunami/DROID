@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class FormularioActivity extends Activity {
-
+	private FormularioHelper helper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
+		
+		this.helper = new FormularioHelper(this);
 		
 		Button botao = (Button) findViewById(R.id.botao);
 		
