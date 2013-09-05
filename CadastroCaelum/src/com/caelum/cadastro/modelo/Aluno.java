@@ -1,14 +1,15 @@
 package com.caelum.cadastro.modelo;
 
 public class Aluno {
-	
+
 	private Long id;
 	private String nome;
-	private String endereço;
-	private String email;
+	private String endereco;
+	private String telefone;
 	private String site;
 	private String foto;
-	
+	private Double nota;
+
 	@Override
 	public String toString() {
 		return nome;
@@ -22,6 +23,14 @@ public class Aluno {
 		this.id = id;
 	}
 
+	public Double getNota() {
+		return nota;
+	}
+
+	public void setNota(Double nota) {
+		this.nota = nota;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -30,20 +39,20 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getSite() {
@@ -61,9 +70,5 @@ public class Aluno {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
-	
-	
 
 }
