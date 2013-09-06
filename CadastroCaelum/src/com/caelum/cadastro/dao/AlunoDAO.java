@@ -6,8 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AlunoDAO extends SQLiteOpenHelper{
 
+	private static final int VERSAO = 1;
+	private static final String CADASTRO_CAELUM = "CadastroCaelum";
+
 	public AlunoDAO(Context context) {
-		super(context, "CadastroCaelum", null, 1);
+		super(context, CADASTRO_CAELUM, null, VERSAO);
 	}
 
 	@Override
