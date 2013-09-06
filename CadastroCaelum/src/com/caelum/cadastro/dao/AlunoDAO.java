@@ -14,9 +14,11 @@ public class AlunoDAO extends SQLiteOpenHelper{
 	}
 
 	@Override
-	public void onCreate(SQLiteDatabase arg0) {
-		// TODO Auto-generated method stub
-		
+	public void onCreate(SQLiteDatabase sqlDb) {
+		String create = "CREATE TABLE FJ57 id INTEGER PRIMARY KEY, " +
+				"nome TEXT UNIQUE NOT NULL, telefone TEXT,endereco TEXT,site TEXT," +
+				"nota REAL, foto TEXT);";
+		sqlDb.execSQL(create);
 	}
 
 	@Override
