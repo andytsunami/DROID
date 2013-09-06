@@ -1,5 +1,6 @@
 package com.caelum.cadastro;
 
+import com.caelum.cadastro.dao.AlunoDAO;
 import com.caelum.cadastro.modelo.Aluno;
 
 import android.app.Activity;
@@ -30,7 +31,9 @@ public class FormularioActivity extends Activity {
 				
 				
 				Aluno aluno = helper.pegaAlunoDoformulario();
-				Toast.makeText(FormularioActivity.this, "Você salvou " + aluno.getNome(), Toast.LENGTH_SHORT).show();
+				AlunoDAO alunoDAO = new AlunoDAO(FormularioActivity.this);
+				alunoDAO.insere(aluno);
+				
 				
 				finish();
 				
