@@ -33,7 +33,7 @@ public class FormularioActivity extends Activity {
 				Aluno aluno = helper.pegaAlunoDoformulario();
 				AlunoDAO alunoDAO = new AlunoDAO(FormularioActivity.this);
 				alunoDAO.insere(aluno);
-				
+				alunoDAO.close();
 				
 				finish();
 				
