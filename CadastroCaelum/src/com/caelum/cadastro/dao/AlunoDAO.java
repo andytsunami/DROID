@@ -51,7 +51,7 @@ public class AlunoDAO {
 
 		String create = "CREATE TABLE "
 				+ TABELA
-				+ " id INTEGER PRIMARY KEY, "
+				+ " (id INTEGER PRIMARY KEY, "
 				+ "nome TEXT UNIQUE NOT NULL, telefone TEXT,endereco TEXT,site TEXT,"
 				+ "nota REAL, foto TEXT);";
 		sqlDb.execSQL(create);
