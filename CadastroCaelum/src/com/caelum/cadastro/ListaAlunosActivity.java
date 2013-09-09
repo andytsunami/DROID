@@ -28,21 +28,8 @@ public class ListaAlunosActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listagem_alunos);
 
-		/*String[] alunos = { "Mimi", "Cocó", "Ranheta", "Tizil", "Lambari",
-				"Havaiana jones", "Feitoza", "Palhaço do satanás",
-				"Fetinho do mal", "Zé graça", "Palhaço hamburgueiro" };*/
 		
-		AlunoDAO alunoDAO = new AlunoDAO(this);
-		List<Aluno> alunos = alunoDAO.getLista();
-		alunoDAO.fecha();
-		
-		int layout = android.R.layout.simple_list_item_1;
-
-		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
-		ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, layout,
-				alunos);
-
-		listaAlunos.setAdapter(adapter);
+		carregaLista();
 
 		listaAlunos.setOnItemClickListener(new OnItemClickListener() {
 
@@ -74,6 +61,20 @@ public class ListaAlunosActivity extends Activity {
 
 	}
 
+	private void carregaLista() {
+		AlunoDAO alunoDAO = new AlunoDAO(this);
+		List<Aluno> alunos = alunoDAO.getLista();
+		alunoDAO.fecha();
+		
+		int layout = android.R.layout.simple_list_item_1;
+
+		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
+		ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, layout,
+				alunos);
+
+		listaAlunos.setAdapter(adapter);
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -92,6 +93,12 @@ public class ListaAlunosActivity extends Activity {
 		}
 		
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	protected void onResume() {
+		carregaLista();
+		super.onResume();
 	}
 
 }
