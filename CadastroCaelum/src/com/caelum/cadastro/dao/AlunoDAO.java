@@ -7,18 +7,41 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class AlunoDAO extends SQLiteOpenHelper {
+public class AlunoDAO {
 
 	private static final int VERSAO = 1;
 	private static final String BANCO = "CadastroCaelum";
 	private static final String TABELA = "FJ57";
+	private final SQLiteOpenHelper sqlHelper;
+	private final Context context;
 
 	public AlunoDAO(Context context) {
-		super(context, BANCO, null, VERSAO);
+		//super(context, BANCO, null, VERSAO);
+		this.context = context;
+		this.sqlHelper = new SQLiteOpenHelper(this.context,this.BANCO,null,this.VERSAO) {
+			
+			@Override
+			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+				aoAtualizar(db, oldVersion, newVersion);
+			}
+			
+			@Override
+			public void onCreate(SQLiteDatabase db) {
+				aoCriar(db);
+			}
+			
+			@Override
+			public synchronized void close() {
+				super.close();
+			}
+			
+			
+		};
+		
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase sqlDb) {
+	public void aoCriar(SQLiteDatabase sqlDb) {
+		
 		String create = "CREATE TABLE "
 				+ TABELA
 				+ " id INTEGER PRIMARY KEY, "
@@ -27,20 +50,18 @@ public class AlunoDAO extends SQLiteOpenHelper {
 		sqlDb.execSQL(create);
 	}
 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
+	public void aoAtualizar(SQLiteDatabase db, int arg1, int arg2) {
 
 		String sql = "DROP TABLE IF EXISTS " + TABELA;
 		db.execSQL(sql);
-		this.onCreate(db);
-
 	}
 	
 	public void insere(Aluno aluno){
 		
 		ContentValues valores = toValues(aluno);
 		
-		getWritableDatabase().insert(TABELA, null, valores);
+		sqlHelper.getWritableDatabase().insert(TABELA, null, valores);
+		
 		
 	}
 	
@@ -55,6 +76,10 @@ public class AlunoDAO extends SQLiteOpenHelper {
 		valores.put("nota",aluno.getNota());
 		
 		return valores;
+	}
+	
+	public void fecha(){
+		this.sqlHelper.close();
 	}
 
 }
