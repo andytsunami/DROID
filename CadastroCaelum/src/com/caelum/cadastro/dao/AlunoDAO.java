@@ -18,7 +18,7 @@ public class AlunoDAO {
 	public AlunoDAO(Context context) {
 		//super(context, BANCO, null, VERSAO);
 		this.context = context;
-		this.sqlHelper = new SQLiteOpenHelper(this.context,this.BANCO,null,this.VERSAO) {
+		this.sqlHelper = new SQLiteOpenHelper(this.context,AlunoDAO.BANCO,null,AlunoDAO.VERSAO) {
 			
 			@Override
 			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
