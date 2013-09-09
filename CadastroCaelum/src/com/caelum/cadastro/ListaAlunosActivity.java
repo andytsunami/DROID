@@ -34,6 +34,7 @@ public class ListaAlunosActivity extends Activity {
 		
 		AlunoDAO alunoDAO = new AlunoDAO(this);
 		List<Aluno> alunos = alunoDAO.getLista();
+		alunoDAO.fecha();
 		
 		int layout = android.R.layout.simple_list_item_1;
 
