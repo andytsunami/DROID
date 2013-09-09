@@ -22,6 +22,12 @@ import android.widget.Toast;
 public class ListaAlunosActivity extends Activity {
 
 	private ListView listaAlunos;
+	
+	@Override
+	protected void onStart() {
+	this.carregaLista();
+		super.onStart();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
