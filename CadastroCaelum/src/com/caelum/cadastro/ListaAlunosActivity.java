@@ -8,10 +8,12 @@ import com.caelum.cadastro.modelo.Aluno;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -99,6 +101,19 @@ public class ListaAlunosActivity extends Activity {
 		}
 		
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		menu.add("Ligar");
+		menu.add("Enviar SMS");
+		menu.add("Achar no mapa");
+		menu.add("Navegar no site");
+		menu.add("Deletar");
+		menu.add("Enviar E-mail");
+	
+		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 	
 	@Override
