@@ -38,6 +38,9 @@ public class ListaAlunosActivity extends Activity {
 
 		
 		carregaLista();
+		
+		registerForContextMenu(listaAlunos);
+		
 
 		listaAlunos.setOnItemClickListener(new OnItemClickListener() {
 
