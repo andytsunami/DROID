@@ -6,6 +6,8 @@ import com.caelum.cadastro.dao.AlunoDAO;
 import com.caelum.cadastro.modelo.Aluno;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -115,11 +117,21 @@ public class ListaAlunosActivity extends Activity {
 		
 		deletar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
-				AlunoDAO alunoDAO = new AlunoDAO(ListaAlunosActivity.this);
 				
-				alunoDAO.deletar(alunoSelecionado);
-				alunoDAO.fecha();
-				carregaLista();
+				new AlertDialog.Builder(ListaAlunosActivity.this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Deletar?").
+				setMessage("Deseja mesmo deletar o aluno " + alunoSelecionado.getNome()).setPositiveButton("Manda Bala", 
+						new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								AlunoDAO alunoDAO = new AlunoDAO(ListaAlunosActivity.this);
+								
+								alunoDAO.deletar(alunoSelecionado);
+								alunoDAO.fecha();
+								carregaLista();
+							}
+						}).setNegativeButton("Melhor não", null).show();
+				 
 				return false;
 			}
 		});
