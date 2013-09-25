@@ -24,10 +24,10 @@ import android.widget.Toast;
 public class ListaAlunosActivity extends Activity {
 
 	private ListView listaAlunos;
-	
+
 	@Override
 	protected void onStart() {
-	this.carregaLista();
+		this.carregaLista();
 		super.onStart();
 	}
 
@@ -36,11 +36,9 @@ public class ListaAlunosActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listagem_alunos);
 
-		
 		carregaLista();
-		
+
 		registerForContextMenu(listaAlunos);
-		
 
 		listaAlunos.setOnItemClickListener(new OnItemClickListener() {
 
@@ -62,11 +60,12 @@ public class ListaAlunosActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
 
-				Toast.makeText(ListaAlunosActivity.this,
-						"Conteudo: " + adapter.getItemAtPosition(posicao),
-						Toast.LENGTH_SHORT).show();
+				Aluno alunoSelecionado = (Aluno) adapter
+						.getItemAtPosition(posicao);
+				Toast.makeText(ListaAlunosActivity.this, "Aluno: "
+						+ alunoSelecionado.getNome(), Toast.LENGTH_SHORT).show();
 
-				return true;
+				return false;
 			}
 		});
 
@@ -76,7 +75,7 @@ public class ListaAlunosActivity extends Activity {
 		AlunoDAO alunoDAO = new AlunoDAO(this);
 		List<Aluno> alunos = alunoDAO.getLista();
 		alunoDAO.fecha();
-		
+
 		int layout = android.R.layout.simple_list_item_1;
 
 		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
@@ -97,15 +96,16 @@ public class ListaAlunosActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		if(item.getItemId() == R.id.menu_novo){
-			Intent intent = new Intent(ListaAlunosActivity.this,FormularioActivity.class);
+		if (item.getItemId() == R.id.menu_novo) {
+			Intent intent = new Intent(ListaAlunosActivity.this,
+					FormularioActivity.class);
 			startActivity(intent);
 			return false;
 		}
-		
+
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -115,10 +115,10 @@ public class ListaAlunosActivity extends Activity {
 		menu.add("Navegar no site");
 		menu.add("Deletar");
 		menu.add("Enviar E-mail");
-	
+
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		carregaLista();
