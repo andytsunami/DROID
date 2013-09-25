@@ -12,6 +12,7 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 public class ListaAlunosActivity extends Activity {
 
 	private ListView listaAlunos;
+	private Aluno alunoSelecionado;
 
 	@Override
 	protected void onStart() {
@@ -60,7 +62,7 @@ public class ListaAlunosActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
 
-				Aluno alunoSelecionado = (Aluno) adapter
+				alunoSelecionado = (Aluno) adapter
 						.getItemAtPosition(posicao);
 				Toast.makeText(ListaAlunosActivity.this, "Aluno: "
 						+ alunoSelecionado.getNome(), Toast.LENGTH_SHORT).show();
@@ -109,13 +111,24 @@ public class ListaAlunosActivity extends Activity {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
+		MenuItem deletar = menu.add("Deletar");
+		
+		deletar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			public boolean onMenuItemClick(MenuItem item) {
+				AlunoDAO alunoDAO = new AlunoDAO(ListaAlunosActivity.this);
+				
+				alunoDAO.deletar(alunoSelecionado);
+				alunoDAO.fecha();
+				carregaLista();
+				return false;
+			}
+		});
 		menu.add("Ligar");
 		menu.add("Enviar SMS");
 		menu.add("Achar no mapa");
 		menu.add("Navegar no site");
-		menu.add("Deletar");
 		menu.add("Enviar E-mail");
-
+		
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 

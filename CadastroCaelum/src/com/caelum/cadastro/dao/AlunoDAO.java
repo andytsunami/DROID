@@ -110,5 +110,10 @@ public class AlunoDAO {
 		return alunos;
 
 	}
+	
+	public void deletar(Aluno aluno){
+		String[] args = {aluno.getId().toString()};
+		this.sqlHelper.getWritableDatabase().delete(TABELA, "id=?", args);
+	}
 
 }
