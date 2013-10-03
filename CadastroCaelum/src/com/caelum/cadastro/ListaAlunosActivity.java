@@ -50,6 +50,11 @@ public class ListaAlunosActivity extends Activity {
 			public void onItemClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
 
+				Intent edicao = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+				
+				edicao.putExtra(Extras.ALUNO_SELECIONADO, listaAlunos.getItemIdAtPosition(posicao));
+				startActivity(edicao);
+				
 				Toast.makeText(ListaAlunosActivity.this,
 						"Posição do elemento " + (posicao + 1),
 						Toast.LENGTH_SHORT).show();
