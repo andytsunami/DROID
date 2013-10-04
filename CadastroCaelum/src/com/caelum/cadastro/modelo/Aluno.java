@@ -1,7 +1,13 @@
 package com.caelum.cadastro.modelo;
 
-public class Aluno {
+import java.io.Serializable;
 
+public class Aluno implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2462258682058164008L;
 	private Long id;
 	private String nome;
 	private String endereco;
