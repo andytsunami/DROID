@@ -4,6 +4,7 @@ import com.caelum.cadastro.dao.AlunoDAO;
 import com.caelum.cadastro.modelo.Aluno;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -23,6 +24,14 @@ public class FormularioActivity extends Activity {
 		Button botao = (Button) findViewById(R.id.botao);
 		
 		this.helper = new FormularioHelper(this);
+		Intent intent = this.getIntent();
+		Aluno aluno = (Aluno) intent.getSerializableExtra(Extras.ALUNO_SELECIONADO);
+		
+		if(aluno == null){
+			aluno = new Aluno();
+		} else {
+			botao.setText("Alterar");
+		}
 		
 		botao.setOnClickListener(new View.OnClickListener() {
 			
