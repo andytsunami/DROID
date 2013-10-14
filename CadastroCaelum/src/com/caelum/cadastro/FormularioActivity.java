@@ -25,13 +25,13 @@ public class FormularioActivity extends Activity {
 		
 		this.helper = new FormularioHelper(this);
 		Intent intent = this.getIntent();
-		Aluno aluno = (Aluno) intent.getSerializableExtra(Extras.ALUNO_SELECIONADO);
+		final Aluno alunoParaSerAlterado = (Aluno) intent.getSerializableExtra(Extras.ALUNO_SELECIONADO);
 		
-		if(aluno == null){
-			aluno = new Aluno();
-		} else {
+		if(alunoParaSerAlterado != null){
 			botao.setText("Alterar");
+			helper.colocaAlunoNoFormulario(alunoParaSerAlterado);
 		}
+		
 		
 		botao.setOnClickListener(new View.OnClickListener() {
 			
@@ -41,7 +41,15 @@ public class FormularioActivity extends Activity {
 				
 				Aluno aluno = helper.pegaAlunoDoformulario();
 				AlunoDAO alunoDAO = new AlunoDAO(FormularioActivity.this);
-				alunoDAO.insere(aluno);
+				
+				if(alunoParaSerAlterado == null){
+					
+					alunoDAO.insere(aluno);
+				} else {
+					aluno.setId(alunoParaSerAlterado.getId());
+					alunoDAO.atualiza(aluno);
+				}
+				
 				alunoDAO.fecha();
 				
 				finish();

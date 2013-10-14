@@ -111,9 +111,38 @@ public class AlunoDAO {
 
 	}
 	
+	public void atualiza(Aluno aluno){
+		String[] args = {aluno.getId().toString()};
+		ContentValues values = toValues(aluno);
+		this.sqlHelper.getWritableDatabase().update(TABELA, values, "id=?", args);
+	}
+	
 	public void deletar(Aluno aluno){
 		String[] args = {aluno.getId().toString()};
 		this.sqlHelper.getWritableDatabase().delete(TABELA, "id=?", args);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

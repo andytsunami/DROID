@@ -52,7 +52,7 @@ public class ListaAlunosActivity extends Activity {
 
 				Intent edicao = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
 				
-				edicao.putExtra(Extras.ALUNO_SELECIONADO, listaAlunos.getItemIdAtPosition(posicao));
+				edicao.putExtra(Extras.ALUNO_SELECIONADO, (Aluno) listaAlunos.getItemAtPosition(posicao));
 				startActivity(edicao);
 				
 				Toast.makeText(ListaAlunosActivity.this,
