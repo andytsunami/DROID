@@ -47,7 +47,7 @@ public class FormularioActivity extends Activity {
 					alunoDAO.insere(aluno);
 				} else {
 					aluno.setId(alunoParaSerAlterado.getId());
-					alunoDAO.atualiza(aluno);
+					alunoDAO.alterar(aluno);
 				}
 				
 				alunoDAO.fecha();

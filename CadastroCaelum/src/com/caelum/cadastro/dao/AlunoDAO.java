@@ -111,7 +111,7 @@ public class AlunoDAO {
 
 	}
 	
-	public void atualiza(Aluno aluno){
+	public void alterar(Aluno aluno){
 		String[] args = {aluno.getId().toString()};
 		ContentValues values = toValues(aluno);
 		this.sqlHelper.getWritableDatabase().update(TABELA, values, "id=?", args);
