@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -140,7 +141,15 @@ public class ListaAlunosActivity extends Activity {
 				return false;
 			}
 		});
-		menu.add("Ligar");
+
+		
+		MenuItem ligar = menu.add("Ligar");
+		Intent intentLigar = new Intent("Tel:"+Intent.ACTION_CALL);
+		intentLigar.setData(Uri.parse(alunoSelecionado.getTelefone()));
+		ligar.setIntent(intentLigar);
+		
+		
+		
 		menu.add("Enviar SMS");
 		menu.add("Achar no mapa");
 		menu.add("Navegar no site");
