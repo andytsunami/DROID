@@ -1,5 +1,6 @@
 package com.caelum.cadastro;
 
+import java.net.URI;
 import java.util.List;
 
 import com.caelum.cadastro.dao.AlunoDAO;
@@ -144,9 +145,20 @@ public class ListaAlunosActivity extends Activity {
 
 		
 		MenuItem ligar = menu.add("Ligar");
-		Intent intentLigar = new Intent("Tel:"+Intent.ACTION_CALL);
-		intentLigar.setData(Uri.parse(alunoSelecionado.getTelefone()));
-		ligar.setIntent(intentLigar);
+		
+		ligar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intentLigar = new Intent(Intent.ACTION_CALL);
+				Uri discarPara = Uri.parse("tel:"+alunoSelecionado.getTelefone());
+				intentLigar.setData(discarPara);
+				startActivity(intentLigar);
+				return true;
+			}
+		});
+		
+		
 		
 		
 		
