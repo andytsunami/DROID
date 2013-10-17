@@ -1,10 +1,6 @@
 package com.caelum.cadastro;
 
-import java.net.URI;
 import java.util.List;
-
-import com.caelum.cadastro.dao.AlunoDAO;
-import com.caelum.cadastro.modelo.Aluno;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,18 +9,21 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.caelum.cadastro.dao.AlunoDAO;
+import com.caelum.cadastro.modelo.Aluno;
 
 public class ListaAlunosActivity extends Activity {
 
@@ -154,7 +153,7 @@ public class ListaAlunosActivity extends Activity {
 				Uri discarPara = Uri.parse("tel:"+alunoSelecionado.getTelefone());
 				intentLigar.setData(discarPara);
 				startActivity(intentLigar);
-				return true;
+				return false;
 			}
 		});
 		
@@ -162,9 +161,54 @@ public class ListaAlunosActivity extends Activity {
 		
 		
 		
-		menu.add("Enviar SMS");
-		menu.add("Achar no mapa");
-		menu.add("Navegar no site");
+		MenuItem enviarSms = menu.add("Enviar SMS");
+		enviarSms.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intentSms = new Intent(Intent.ACTION_VIEW);
+				Uri smsPara = Uri.parse("sms:"+alunoSelecionado.getTelefone());
+				intentSms.setData(smsPara);
+				intentSms.putExtra("sms_body", "Bom dia " + alunoSelecionado.getNome()+"! ");
+				startActivity(intentSms);
+				return false;
+			}
+		});
+		
+		MenuItem mapa = menu.add("Achar no mapa");
+		mapa.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+				Uri localizaPara = Uri.parse("geo:0,0?z=14&q="+alunoSelecionado.getEndereco());
+				intentMapa.setData(localizaPara);
+				startActivity(intentMapa);
+				return false;
+			}
+		});
+		
+		
+		MenuItem navegarSite = menu.add("Navegar no site");
+		navegarSite.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intentNavegador = new Intent(Intent.ACTION_VIEW);
+				String prefix = "";
+				if (!alunoSelecionado.getSite().startsWith("http://")){
+					prefix = "http://";
+				}
+				
+				Uri siteAluno = Uri.parse(prefix+alunoSelecionado.getSite());
+				intentNavegador.setData(siteAluno);
+				startActivity(intentNavegador);
+				
+				return false;
+			}
+		});
+		
+		
 		menu.add("Enviar E-mail");
 		
 		super.onCreateContextMenu(menu, v, menuInfo);
