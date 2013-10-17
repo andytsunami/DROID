@@ -181,8 +181,8 @@ public class ListaAlunosActivity extends Activity {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent intentMapa = new Intent(Intent.ACTION_VIEW);
-				Uri localizaPara = Uri.parse("geo:0,0?z=14&q="+alunoSelecionado.getEndereco());
-				intentMapa.setData(localizaPara);
+				Uri mapaPara = Uri.parse("geo:0,0?q=paulista");
+				intentMapa.setData(mapaPara);
 				startActivity(intentMapa);
 				return false;
 			}
