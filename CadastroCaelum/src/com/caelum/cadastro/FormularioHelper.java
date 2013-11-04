@@ -1,6 +1,7 @@
 package com.caelum.cadastro;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import com.caelum.cadastro.modelo.Aluno;
@@ -11,7 +12,8 @@ public class FormularioHelper {
 	private EditText telefone;
 	private EditText site;
 	private EditText endereco;
-	private EditText foto;
+	private ImageView botaoImagem;
+	
 	private RatingBar nota;
 	private Aluno aluno;
 
@@ -21,7 +23,7 @@ public class FormularioHelper {
 		this.site = (EditText) formulario.findViewById(R.id.site);
 		this.endereco = (EditText) formulario.findViewById(R.id.endereco);
 		this.nota = (RatingBar) formulario.findViewById(R.id.nota);
-		//this.foto = (EditText) formulario.findViewById(R.id.imagem);
+		this.botaoImagem = (ImageView) formulario.findViewById(R.id.foto);
 		this.aluno = new Aluno();
 
 	}
@@ -31,7 +33,6 @@ public class FormularioHelper {
 		this.aluno.setTelefone(telefone.getEditableText().toString());
 		this.aluno.setSite(site.getEditableText().toString());
 		this.aluno.setEndereco(endereco.getEditableText().toString());
-		//this.aluno.setFoto(foto.getEditableText().toString());
 		this.aluno.setNota(Double.valueOf(nota.getRating()));
 		
 		return this.aluno;
@@ -46,6 +47,10 @@ public class FormularioHelper {
 		nota.setProgress(aluno.getNota().intValue());
 		
 		this.aluno = aluno;
+	}
+	
+	public ImageView getBotaoImagem() {
+		return botaoImagem;
 	}
 
 }

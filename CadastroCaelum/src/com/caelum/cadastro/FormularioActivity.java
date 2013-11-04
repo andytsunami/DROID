@@ -1,24 +1,34 @@
 package com.caelum.cadastro;
 
-import com.caelum.cadastro.dao.AlunoDAO;
-import com.caelum.cadastro.modelo.Aluno;
+import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+
+import com.caelum.cadastro.dao.AlunoDAO;
+import com.caelum.cadastro.modelo.Aluno;
 
 public class FormularioActivity extends Activity {
 	
 	private FormularioHelper helper;
+	private String caminhoFoto;
+	private static int CODIGO_FOTO = 123;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
+		
+		
 		
 		
 		Button botao = (Button) findViewById(R.id.botao);
@@ -57,6 +67,21 @@ public class FormularioActivity extends Activity {
 			}
 		});
 		
+		ImageView foto = helper.getBotaoImagem();
+		
+		
+		foto.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				caminhoFoto = Environment.getExternalStorageDirectory()+"/"+System.currentTimeMillis()+".jpg";
+				Intent irParaCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				irParaCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(caminhoFoto)));
+				
+				startActivityForResult(irParaCamera,CODIGO_FOTO);
+				
+			}
+		});
 		
 	}
 
