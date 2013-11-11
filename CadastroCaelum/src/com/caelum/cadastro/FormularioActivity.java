@@ -40,7 +40,13 @@ public class FormularioActivity extends Activity {
 		if(alunoParaSerAlterado != null){
 			botao.setText("Alterar");
 			helper.colocaAlunoNoFormulario(alunoParaSerAlterado);
+			
+			if(alunoParaSerAlterado.getFoto() != null){
+				helper.carregaImagem(alunoParaSerAlterado.getFoto());
+			}
 		}
+		
+	
 		
 		
 		botao.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +56,7 @@ public class FormularioActivity extends Activity {
 				
 				
 				Aluno aluno = helper.pegaAlunoDoformulario();
+				aluno.setFoto(caminhoFoto);
 				AlunoDAO alunoDAO = new AlunoDAO(FormularioActivity.this);
 				
 				if(alunoParaSerAlterado == null){
@@ -83,6 +90,19 @@ public class FormularioActivity extends Activity {
 			}
 		});
 		
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		if(requestCode == CODIGO_FOTO){
+			if(resultCode == Activity.RESULT_OK){
+				helper.carregaImagem(this.caminhoFoto);
+				
+			} else {
+				this.caminhoFoto =  null;
+			}
+		}
 	}
 
 	@Override

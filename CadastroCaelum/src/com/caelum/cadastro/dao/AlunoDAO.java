@@ -112,6 +112,9 @@ public class AlunoDAO {
 	}
 	
 	public void alterar(Aluno aluno){
+		
+		System.out.println("=============ALTERA NO DAO=============" + aluno.getFoto());
+		
 		String[] args = {aluno.getId().toString()};
 		ContentValues values = toValues(aluno);
 		this.sqlHelper.getWritableDatabase().update(TABELA, values, "id=?", args);

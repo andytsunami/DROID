@@ -1,5 +1,7 @@
 package com.caelum.cadastro;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -35,6 +37,7 @@ public class FormularioHelper {
 		this.aluno.setEndereco(endereco.getEditableText().toString());
 		this.aluno.setNota(Double.valueOf(nota.getRating()));
 		
+		
 		return this.aluno;
 		
 	}
@@ -46,11 +49,20 @@ public class FormularioHelper {
 		endereco.setText(aluno.getEndereco());
 		nota.setProgress(aluno.getNota().intValue());
 		
+		carregaImagem(aluno.getFoto());
 		this.aluno = aluno;
 	}
 	
 	public ImageView getBotaoImagem() {
 		return botaoImagem;
+	}
+
+	public void carregaImagem(String caminhoFoto) {
+		Bitmap imagemFoto = BitmapFactory.decodeFile(caminhoFoto);
+		Bitmap imagemRedimensionada = Bitmap.createScaledBitmap(imagemFoto, 100, 100, true);
+		this.aluno.setFoto(caminhoFoto);
+		this.botaoImagem.setImageBitmap(imagemRedimensionada);
+		
 	}
 
 }
