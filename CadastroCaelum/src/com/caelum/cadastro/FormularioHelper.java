@@ -15,7 +15,7 @@ public class FormularioHelper {
 	private EditText site;
 	private EditText endereco;
 	private ImageView botaoImagem;
-	
+
 	private RatingBar nota;
 	private Aluno aluno;
 
@@ -29,40 +29,44 @@ public class FormularioHelper {
 		this.aluno = new Aluno();
 
 	}
-	
-	public Aluno pegaAlunoDoformulario(){
+
+	public Aluno pegaAlunoDoformulario() {
 		this.aluno.setNome(nome.getEditableText().toString());
 		this.aluno.setTelefone(telefone.getEditableText().toString());
 		this.aluno.setSite(site.getEditableText().toString());
 		this.aluno.setEndereco(endereco.getEditableText().toString());
 		this.aluno.setNota(Double.valueOf(nota.getRating()));
-		
-		
+
 		return this.aluno;
-		
+
 	}
-	
-	public void colocaAlunoNoFormulario(Aluno aluno){
+
+	public void colocaAlunoNoFormulario(Aluno aluno) {
 		nome.setText(aluno.getNome());
 		telefone.setText(aluno.getTelefone());
 		site.setText(aluno.getSite());
 		endereco.setText(aluno.getEndereco());
 		nota.setProgress(aluno.getNota().intValue());
-		
-		carregaImagem(aluno.getFoto());
+
+		if (aluno.getFoto() != null) {
+			System.out.println("=======================TENHO FOTO E ESTA SENDO CARREGADA===========================");
+			this.carregaImagem(aluno.getFoto());
+
+		}
 		this.aluno = aluno;
 	}
-	
+
 	public ImageView getBotaoImagem() {
 		return botaoImagem;
 	}
 
 	public void carregaImagem(String caminhoFoto) {
 		Bitmap imagemFoto = BitmapFactory.decodeFile(caminhoFoto);
-		Bitmap imagemRedimensionada = Bitmap.createScaledBitmap(imagemFoto, 100, 100, true);
+		Bitmap imagemRedimensionada = Bitmap.createScaledBitmap(imagemFoto,
+				100, 100, true);
 		this.aluno.setFoto(caminhoFoto);
 		this.botaoImagem.setImageBitmap(imagemRedimensionada);
-		
+
 	}
 
 }

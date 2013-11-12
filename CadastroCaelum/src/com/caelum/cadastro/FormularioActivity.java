@@ -56,7 +56,6 @@ public class FormularioActivity extends Activity {
 				
 				
 				Aluno aluno = helper.pegaAlunoDoformulario();
-				aluno.setFoto(caminhoFoto);
 				AlunoDAO alunoDAO = new AlunoDAO(FormularioActivity.this);
 				
 				if(alunoParaSerAlterado == null){

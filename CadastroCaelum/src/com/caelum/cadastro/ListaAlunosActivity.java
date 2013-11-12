@@ -57,8 +57,9 @@ public class ListaAlunosActivity extends Activity {
 				startActivity(edicao);
 				
 				Toast.makeText(ListaAlunosActivity.this,
-						"Posição do elemento " + (posicao + 1),
+						"Caminho da imagem:  " + alunoSelecionado.getFoto(),
 						Toast.LENGTH_SHORT).show();
+				
 
 			}
 
