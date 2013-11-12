@@ -80,6 +80,7 @@ public class AlunoDAO {
 		valores.put("site", aluno.getSite());
 		valores.put("telefone", aluno.getTelefone());
 		valores.put("nota", aluno.getNota());
+		valores.put("foto", aluno.getFoto());
 
 		return valores;
 	}
@@ -112,8 +113,6 @@ public class AlunoDAO {
 	}
 	
 	public void alterar(Aluno aluno){
-		
-		System.out.println("=============ALTERA NO DAO=============" + aluno.getFoto());
 		
 		String[] args = {aluno.getId().toString()};
 		ContentValues values = toValues(aluno);

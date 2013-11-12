@@ -26,7 +26,7 @@ public class FormularioHelper {
 		this.endereco = (EditText) formulario.findViewById(R.id.endereco);
 		this.nota = (RatingBar) formulario.findViewById(R.id.nota);
 		this.botaoImagem = (ImageView) formulario.findViewById(R.id.foto);
-		this.aluno = new Aluno();
+		//this.aluno = new Aluno();
 
 	}
 
@@ -49,7 +49,6 @@ public class FormularioHelper {
 		nota.setProgress(aluno.getNota().intValue());
 
 		if (aluno.getFoto() != null) {
-			System.out.println("=======================TENHO FOTO E ESTA SENDO CARREGADA===========================");
 			this.carregaImagem(aluno.getFoto());
 
 		}
@@ -64,7 +63,6 @@ public class FormularioHelper {
 		Bitmap imagemFoto = BitmapFactory.decodeFile(caminhoFoto);
 		Bitmap imagemRedimensionada = Bitmap.createScaledBitmap(imagemFoto,
 				100, 100, true);
-		this.aluno.setFoto(caminhoFoto);
 		this.botaoImagem.setImageBitmap(imagemRedimensionada);
 
 	}
