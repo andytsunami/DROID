@@ -3,9 +3,13 @@ package com.caelum.cadastro.adapter;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.caelum.cadastro.R;
 import com.caelum.cadastro.modelo.Aluno;
@@ -40,8 +44,28 @@ public class ListaAlunosAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int arg0, View arg1, ViewGroup arg2) {
+	public View getView(int posicao, View arg1, ViewGroup arg2) {
 		View view = activity.getLayoutInflater().inflate(R.layout.item, null);
+		
+		Aluno aluno = alunos.get(posicao);
+
+		TextView nome = (TextView) view.findViewById(R.id.nome);
+		ImageView foto  = (ImageView) view.findViewById(R.id.foto);
+		
+		nome.setText(aluno.getNome());
+		
+		Bitmap imagem;
+		
+		if (aluno.getFoto() != null) {
+			imagem = BitmapFactory.decodeFile(aluno.getFoto()); 
+		} else {
+			imagem = BitmapFactory.decodeResource(activity.getResources(), R.drawable.batore);
+		}
+		
+		imagem = Bitmap.createScaledBitmap(imagem, 100, 100, true);
+		
+		foto.setImageBitmap(imagem);
+		
 		return view;
 	}
 
