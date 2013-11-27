@@ -47,6 +47,11 @@ public class ListaAlunosAdapter extends BaseAdapter{
 	public View getView(int posicao, View arg1, ViewGroup arg2) {
 		View view = activity.getLayoutInflater().inflate(R.layout.item, null);
 		
+		if(posicao % 2 == 0){
+			view.setBackgroundColor(activity.getResources().getColor(R.color.linha_par));
+		}
+		
+		
 		Aluno aluno = alunos.get(posicao);
 
 		TextView nome = (TextView) view.findViewById(R.id.nome);
