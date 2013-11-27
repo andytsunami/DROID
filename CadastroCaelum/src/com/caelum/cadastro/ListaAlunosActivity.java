@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.caelum.cadastro.adapter.ListaAlunosAdapter;
 import com.caelum.cadastro.dao.AlunoDAO;
 import com.caelum.cadastro.modelo.Aluno;
 
@@ -90,8 +91,7 @@ public class ListaAlunosActivity extends Activity {
 		int layout = android.R.layout.simple_list_item_1;
 
 		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
-		ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, layout,
-				alunos);
+		 ListaAlunosAdapter adapter = new ListaAlunosAdapter(alunos,this);
 
 		listaAlunos.setAdapter(adapter);
 	}
