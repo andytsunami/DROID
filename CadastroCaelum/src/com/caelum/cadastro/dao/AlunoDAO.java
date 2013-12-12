@@ -3,13 +3,13 @@ package com.caelum.cadastro.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.caelum.cadastro.modelo.Aluno;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.caelum.cadastro.modelo.Aluno;
 
 public class AlunoDAO {
 
@@ -111,40 +111,30 @@ public class AlunoDAO {
 		return alunos;
 
 	}
-	
-	public void alterar(Aluno aluno){
-		
-		String[] args = {aluno.getId().toString()};
+
+	public void alterar(Aluno aluno) {
+
+		String[] args = { aluno.getId().toString() };
 		ContentValues values = toValues(aluno);
-		this.sqlHelper.getWritableDatabase().update(TABELA, values, "id=?", args);
+		this.sqlHelper.getWritableDatabase().update(TABELA, values, "id=?",
+				args);
 	}
-	
-	public void deletar(Aluno aluno){
-		String[] args = {aluno.getId().toString()};
+
+	public void deletar(Aluno aluno) {
+		String[] args = { aluno.getId().toString() };
 		this.sqlHelper.getWritableDatabase().delete(TABELA, "id=?", args);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public boolean isAluno(String telefone) {
+		Cursor cursor = this.sqlHelper.getReadableDatabase().rawQuery(
+				"SELECT telefone FROM " + TABELA + " WHERE telefone = ?",
+				new String[] { telefone });
+		int count = cursor.getCount();
+
+		cursor.close();
+
+		return count > 0;
+
+	}
 
 }
