@@ -36,14 +36,14 @@ public class SMSReceiver extends BroadcastReceiver {
 					"Chegou um SMS do aluno: "
 							+ sms.getDisplayOriginatingAddress() + " -- " + aluno.getNome(),
 					Toast.LENGTH_LONG).show();
+			MediaPlayer player = MediaPlayer.create(context,R.raw.picapau);
+			player.start();
 		} else {
 			Toast.makeText(context,
 					"Chegou um SMS de: " + sms.getDisplayOriginatingAddress(),
 					Toast.LENGTH_LONG).show();
 		}
 		
-		MediaPlayer player = MediaPlayer.create(context,R.raw.picapau);
-		player.start();
 	}
 
 }
