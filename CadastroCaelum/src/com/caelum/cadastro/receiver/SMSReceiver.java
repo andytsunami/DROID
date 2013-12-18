@@ -1,14 +1,16 @@
 package com.caelum.cadastro.receiver;
 
-import com.caelum.cadastro.dao.AlunoDAO;
-import com.caelum.cadastro.modelo.Aluno;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
+import com.caelum.cadastro.R;
+import com.caelum.cadastro.dao.AlunoDAO;
+import com.caelum.cadastro.modelo.Aluno;
 
 public class SMSReceiver extends BroadcastReceiver {
 
@@ -39,6 +41,9 @@ public class SMSReceiver extends BroadcastReceiver {
 					"Chegou um SMS de: " + sms.getDisplayOriginatingAddress(),
 					Toast.LENGTH_LONG).show();
 		}
+		
+		MediaPlayer player = MediaPlayer.create(context,R.raw.picapau);
+		player.start();
 	}
 
 }
