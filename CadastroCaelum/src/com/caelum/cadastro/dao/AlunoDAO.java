@@ -137,4 +137,20 @@ public class AlunoDAO {
 
 	}
 
+	public Aluno buscaPorTelefone(String telefone) {
+		Cursor cursor = this.sqlHelper.getReadableDatabase().rawQuery("SELECT * FROM " + TABELA + " WHERE telefone = ?",new String[]{telefone});
+		Aluno aluno = new Aluno();
+		while (cursor.moveToNext()) {
+			aluno.setId(cursor.getLong(0));
+			aluno.setNome(cursor.getString(1));
+			System.out.println("=================================================================\n " + cursor.getString(1));
+			aluno.setTelefone(cursor.getString(2));
+			aluno.setEndereco(cursor.getString(3));
+			aluno.setSite(cursor.getString(4));
+			aluno.setNota(cursor.getDouble(5));
+			aluno.setFoto(cursor.getString(6));
+		}
+		return aluno;
+	}
+
 }

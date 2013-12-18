@@ -1,6 +1,7 @@
 package com.caelum.cadastro.receiver;
 
 import com.caelum.cadastro.dao.AlunoDAO;
+import com.caelum.cadastro.modelo.Aluno;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,11 +26,13 @@ public class SMSReceiver extends BroadcastReceiver {
 		SmsMessage sms = SmsMessage.createFromPdu(mensagem);
 
 		if (alunoDAO.isAluno(sms.getDisplayOriginatingAddress())) {
+			
+			Aluno aluno = alunoDAO.buscaPorTelefone(sms.getDisplayOriginatingAddress());
 
 			Toast.makeText(
 					context,
 					"Chegou um SMS do aluno: "
-							+ sms.getDisplayOriginatingAddress(),
+							+ sms.getDisplayOriginatingAddress() + " -- " + aluno.getNome(),
 					Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(context,
