@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.caelum.cadastro.adapter.ListaAlunosAdapter;
 import com.caelum.cadastro.dao.AlunoDAO;
 import com.caelum.cadastro.modelo.Aluno;
+import com.caelum.converter.AlunoConverter;
 
 public class ListaAlunosActivity extends Activity {
 
@@ -112,6 +113,16 @@ public class ListaAlunosActivity extends Activity {
 					FormularioActivity.class);
 			startActivity(intent);
 			return false;
+		} else if (item.getItemId() == R.id.menu_enviar_alunos){
+			AlunoDAO alunoDAO = new AlunoDAO(this);
+			List<Aluno> lista = alunoDAO.getLista();
+			alunoDAO.fecha();
+			
+			String json = new AlunoConverter().toJSON(lista);
+			
+			Toast.makeText(this, json, Toast.LENGTH_LONG).show();
+			return false;
+			
 		}
 
 		return super.onOptionsItemSelected(item);
