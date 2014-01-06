@@ -1,4 +1,4 @@
-package com.caelum.cadastro;
+package br.com.caelum.cadastro;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,8 +6,9 @@ import android.graphics.Matrix;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import br.com.caelum.cadastro.modelo.Aluno;
 
-import com.caelum.cadastro.modelo.Aluno;
+import com.caelum.cadastro.R;
 
 public class FormularioHelper {
 

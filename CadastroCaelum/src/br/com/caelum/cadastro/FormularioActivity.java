@@ -1,4 +1,4 @@
-package com.caelum.cadastro;
+package br.com.caelum.cadastro;
 
 import java.io.File;
 
@@ -13,9 +13,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import br.com.caelum.cadastro.dao.AlunoDAO;
+import br.com.caelum.cadastro.modelo.Aluno;
 
-import com.caelum.cadastro.dao.AlunoDAO;
-import com.caelum.cadastro.modelo.Aluno;
+import com.caelum.cadastro.R;
 
 public class FormularioActivity extends Activity {
 	

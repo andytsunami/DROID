@@ -1,4 +1,4 @@
-package com.caelum.cadastro;
+package br.com.caelum.cadastro;
 
 import java.util.List;
 
@@ -18,14 +18,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import br.com.caelum.cadastro.adapter.ListaAlunosAdapter;
+import br.com.caelum.cadastro.dao.AlunoDAO;
+import br.com.caelum.cadastro.modelo.Aluno;
+import br.com.caelum.converter.AlunoConverter;
 
-import com.caelum.cadastro.adapter.ListaAlunosAdapter;
-import com.caelum.cadastro.dao.AlunoDAO;
-import com.caelum.cadastro.modelo.Aluno;
-import com.caelum.converter.AlunoConverter;
+import com.caelum.cadastro.R;
 
 public class ListaAlunosActivity extends Activity {
 
@@ -89,7 +89,6 @@ public class ListaAlunosActivity extends Activity {
 		List<Aluno> alunos = alunoDAO.getLista();
 		alunoDAO.fecha();
 
-		int layout = android.R.layout.simple_list_item_1;
 
 		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
 		 ListaAlunosAdapter adapter = new ListaAlunosAdapter(alunos,this);

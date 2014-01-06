@@ -1,11 +1,11 @@
-package com.caelum.converter;
+package br.com.caelum.converter;
 
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
 
-import com.caelum.cadastro.modelo.Aluno;
+import br.com.caelum.cadastro.modelo.Aluno;
 
 public class AlunoConverter {
 	

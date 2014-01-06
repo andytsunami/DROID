@@ -1,4 +1,4 @@
-package com.caelum.cadastro.receiver;
+package br.com.caelum.cadastro.receiver;
 
 
 import android.content.BroadcastReceiver;
@@ -8,9 +8,10 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
+import br.com.caelum.cadastro.dao.AlunoDAO;
+import br.com.caelum.cadastro.modelo.Aluno;
+
 import com.caelum.cadastro.R;
-import com.caelum.cadastro.dao.AlunoDAO;
-import com.caelum.cadastro.modelo.Aluno;
 
 public class SMSReceiver extends BroadcastReceiver {
 

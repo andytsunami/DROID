@@ -1,4 +1,4 @@
-package com.caelum.cadastro.adapter;
+package br.com.caelum.cadastro.adapter;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import br.com.caelum.cadastro.modelo.Aluno;
 
 import com.caelum.cadastro.R;
-import com.caelum.cadastro.modelo.Aluno;
 
 public class ListaAlunosAdapter extends BaseAdapter{
 	

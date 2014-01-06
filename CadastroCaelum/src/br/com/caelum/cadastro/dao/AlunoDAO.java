@@ -1,4 +1,4 @@
-package com.caelum.cadastro.dao;
+package br.com.caelum.cadastro.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import br.com.caelum.cadastro.modelo.Aluno;
 
-import com.caelum.cadastro.modelo.Aluno;
 
 public class AlunoDAO {
 
