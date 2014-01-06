@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -63,11 +64,17 @@ public class ListaAlunosAdapter extends BaseAdapter{
 		
 		if (aluno.getFoto() != null) {
 			imagem = BitmapFactory.decodeFile(aluno.getFoto()); 
+			imagem = Bitmap.createScaledBitmap(imagem, 100, 100, true);
+			
+			Matrix matrix = new Matrix();
+			matrix.postRotate(90);
+			
+			imagem  = Bitmap.createBitmap(imagem,0,0,imagem.getWidth(),imagem.getHeight(),matrix,true);
+			
 		} else {
 			imagem = BitmapFactory.decodeResource(activity.getResources(), R.drawable.batore);
+			imagem = Bitmap.createScaledBitmap(imagem, 100, 100, true);
 		}
-		
-		imagem = Bitmap.createScaledBitmap(imagem, 100, 100, true);
 		
 		foto.setImageBitmap(imagem);
 		

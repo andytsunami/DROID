@@ -2,6 +2,7 @@ package com.caelum.cadastro;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -61,10 +62,18 @@ public class FormularioHelper {
 
 	public void carregaImagem(String caminhoFoto) {
 		Bitmap imagemFoto = BitmapFactory.decodeFile(caminhoFoto);
+
 		Bitmap imagemRedimensionada = Bitmap.createScaledBitmap(imagemFoto,
 				100, 100, true);
+
+		Matrix matrix = new Matrix();
+		matrix.postRotate(90);
+		Bitmap imagemRotacionada = Bitmap.createBitmap(imagemRedimensionada, 0, 0,
+				imagemRedimensionada.getWidth(),
+				imagemRedimensionada.getHeight(), matrix, true);
+
 		this.aluno.setFoto(caminhoFoto);
-		this.botaoImagem.setImageBitmap(imagemRedimensionada);
+		this.botaoImagem.setImageBitmap(imagemRotacionada);
 
 	}
 
