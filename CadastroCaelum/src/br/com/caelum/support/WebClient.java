@@ -14,20 +14,26 @@ public class WebClient {
 		this.url = url;
 	}
 
-	public String post(String json) throws Exception {
+	public String post(String json)  {
+		try {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 
 		HttpPost post = new HttpPost(url);
 
-		post.setEntity(new StringEntity(json));
+			post.setEntity(new StringEntity(json));
+			
+			post.setHeader("Accept", "application/json");
+			post.setHeader("Content-type", "application/json");
+			
+			HttpResponse response = httpClient.execute(post);
+			String jsonResposta = EntityUtils.toString(response.getEntity());
+			
+			return jsonResposta;
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 
-		post.setHeader("Accept", "application/json");
-		post.setHeader("Content-type", "application/json");
-
-		HttpResponse response = httpClient.execute(post);
-		String jsonResposta = EntityUtils.toString(response.getEntity());
-
-		return jsonResposta;
 
 	}
 
