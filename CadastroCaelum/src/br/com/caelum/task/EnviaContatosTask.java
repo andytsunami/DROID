@@ -6,6 +6,7 @@ import br.com.caelum.cadastro.dao.AlunoDAO;
 import br.com.caelum.cadastro.modelo.Aluno;
 import br.com.caelum.converter.AlunoConverter;
 import br.com.caelum.support.WebClient;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class EnviaContatosTask extends AsyncTask<Object, Object, String>{
 	
 	private Context context;
 	private final String endereco = "http://www.caelum.com.br/mobile";
+	private ProgressDialog progressDialog;
 
 	public EnviaContatosTask(Context context) {
 		this.context = context;
@@ -40,7 +42,15 @@ public class EnviaContatosTask extends AsyncTask<Object, Object, String>{
 	
 	@Override
 	protected void onPostExecute(String result) {
+		progressDialog.dismiss();
 		Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+		
+	}
+	
+	@Override
+	protected void onPreExecute() {
+		progressDialog = ProgressDialog.show(context, "Aguardem", "Enviando dados para a web...",true,true);
+	
 	}
 	
 
