@@ -23,8 +23,7 @@ import android.widget.Toast;
 import br.com.caelum.cadastro.adapter.ListaAlunosAdapter;
 import br.com.caelum.cadastro.dao.AlunoDAO;
 import br.com.caelum.cadastro.modelo.Aluno;
-import br.com.caelum.converter.AlunoConverter;
-import br.com.caelum.support.WebClient;
+import br.com.caelum.task.EnviaContatosTask;
 
 import com.caelum.cadastro.R;
 
@@ -114,18 +113,7 @@ public class ListaAlunosActivity extends Activity {
 			startActivity(intent);
 			return false;
 		} else if (item.getItemId() == R.id.menu_enviar_alunos){
-			AlunoDAO alunoDAO = new AlunoDAO(this);
-			List<Aluno> lista = alunoDAO.getLista();
-			alunoDAO.fecha();
-			
-			String json = new AlunoConverter().toJSON(lista);
-			
-			WebClient webClient = new WebClient("http://www.caelum.com.br/mobile");
-			
-			String resposta = webClient.post(json);
-			
-			
-			Toast.makeText(this, resposta, Toast.LENGTH_LONG).show();
+		new EnviaContatosTask(this).execute();
 			return false;
 			
 		}
