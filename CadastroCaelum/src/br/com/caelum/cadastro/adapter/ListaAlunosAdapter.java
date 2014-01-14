@@ -78,6 +78,16 @@ public class ListaAlunosAdapter extends BaseAdapter{
 		
 		foto.setImageBitmap(imagem);
 		
+		if (view.findViewById(R.id.site)!= null) {
+			TextView site = (TextView) view.findViewById(R.id.site);
+			site.setText(aluno.getSite());
+		}
+		
+		if(view.findViewById(R.id.telefone) != null){
+			TextView telefone = (TextView) view.findViewById(R.id.telefone);
+			telefone.setText(aluno.getTelefone());
+		}
+		
 		return view;
 	}
 
