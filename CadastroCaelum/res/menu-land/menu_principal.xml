@@ -14,7 +14,7 @@
     <item
         android:id="@+id/menu_enviar_alunos"
         android:icon="@drawable/ic_enviar"
-        android:showAsAction=""
+        android:showAsAction="always"
         android:title="@string/Sincronizar"/>
     <item
         android:id="@+id/menu_receber_provas"
