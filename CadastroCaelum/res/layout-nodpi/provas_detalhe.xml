@@ -22,3 +22,23 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data:" />
+
+        <TextView
+            android:id="@+id/detalhe_prova_data"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <ListView
+        android:id="@+id/detalhe_prova_topicos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</TableLayout>
