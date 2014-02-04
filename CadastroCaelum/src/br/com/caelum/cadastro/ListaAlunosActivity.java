@@ -116,9 +116,15 @@ public class ListaAlunosActivity extends Activity {
 		new EnviaContatosTask(this).execute();
 			return false;
 			
+		} else if (item.getItemId() == R.id.menu_receber_provas){
+			Intent provas = new Intent(this,ProvasActivity.class);
+			startActivity(provas);
+			return false;
+		} else {
+			return super.onOptionsItemSelected(item);
 		}
 
-		return super.onOptionsItemSelected(item);
+	//	return super.onOptionsItemSelected(item);
 	}
 
 	@Override

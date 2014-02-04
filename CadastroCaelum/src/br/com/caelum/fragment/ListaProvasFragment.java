@@ -26,7 +26,7 @@ public class ListaProvasFragment extends Fragment {
 				false);
 		
 		
-		this.listViewProvas = (ListView) layoutProvas.findViewById(R.layout.provas_lista);
+		this.listViewProvas = (ListView) layoutProvas.findViewById(R.id.lista_provas);
 		
 		Prova prova1 = new Prova("18/04/2014", "Matematica");
 		prova1.setTopicos(Arrays.asList("Calculo diferencial","Algebra","Integral"));
