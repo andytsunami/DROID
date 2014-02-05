@@ -20,5 +20,9 @@ public class ProvasActivity extends FragmentActivity{
 		
 		transaction.commit();
 	}
+	
+	public boolean isTablet(){
+		return getResources().getBoolean(R.bool.isTablet);
+	}
 
 }
