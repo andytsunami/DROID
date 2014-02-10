@@ -1,6 +1,5 @@
 package br.com.caelum.fragment;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,8 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import br.com.caelum.cadastro.modelo.Prova;
 
 import com.caelum.cadastro.R;
@@ -37,6 +39,18 @@ public class ListaProvasFragment extends Fragment {
 		List<Prova> provas = Arrays.asList(prova1,prova2);
 		
 		this.listViewProvas.setAdapter(new ArrayAdapter<Prova>(getActivity(), android.R.layout.simple_list_item_1, provas));
+		
+		this.listViewProvas.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view, int posicao,
+					long id) {
+				Prova selecionada  = (Prova) adapter.getItemAtPosition(posicao);
+				
+				Toast.makeText(getActivity(), "Prova selecioanada: " + selecionada, Toast.LENGTH_LONG).show();
+			}
+			
+		});
 
 		return layoutProvas;
 	}
