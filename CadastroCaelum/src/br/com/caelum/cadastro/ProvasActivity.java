@@ -1,13 +1,13 @@
 package br.com.caelum.cadastro;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import br.com.caelum.cadastro.modelo.Prova;
 import br.com.caelum.fragment.DetalhesProvaFragment;
 import br.com.caelum.fragment.ListaProvasFragment;
 
 import com.caelum.cadastro.R;
-
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 
 public class ProvasActivity extends FragmentActivity {
 	@Override
@@ -27,7 +27,8 @@ public class ProvasActivity extends FragmentActivity {
 
 			} else {
 				transaction.replace(R.id.provas_view,
-						new ListaProvasFragment(), ListaProvasFragment.class.getCanonicalName());
+						new ListaProvasFragment(),
+						ListaProvasFragment.class.getCanonicalName());
 
 			}
 			transaction.commit();
@@ -36,6 +37,21 @@ public class ProvasActivity extends FragmentActivity {
 
 	public boolean isTablet() {
 		return getResources().getBoolean(R.bool.isTablet);
+	}
+
+	public void selecionaProva(Prova selecionada) {
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("prova", selecionada);
+		DetalhesProvaFragment detalhesProva = new DetalhesProvaFragment();
+		detalhesProva.setArguments(bundle);
+
+		FragmentTransaction transaction = getSupportFragmentManager()
+				.beginTransaction();
+		transaction.replace(R.id.provas_view, detalhesProva,
+				DetalhesProvaFragment.class.getCanonicalName());
+		transaction.addToBackStack(null);
+
+		transaction.commit();
 	}
 
 }

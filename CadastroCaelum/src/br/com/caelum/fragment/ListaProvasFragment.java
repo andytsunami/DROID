@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import br.com.caelum.cadastro.ProvasActivity;
 import br.com.caelum.cadastro.modelo.Prova;
 
 import com.caelum.cadastro.R;
@@ -47,7 +47,9 @@ public class ListaProvasFragment extends Fragment {
 					long id) {
 				Prova selecionada  = (Prova) adapter.getItemAtPosition(posicao);
 				
-				Toast.makeText(getActivity(), "Prova selecioanada: " + selecionada, Toast.LENGTH_LONG).show();
+				ProvasActivity calendarioProvas = (ProvasActivity) getActivity();
+				calendarioProvas.selecionaProva(selecionada);
+				
 			}
 			
 		});
