@@ -3,6 +3,7 @@ package br.com.caelum.cadastro;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 import br.com.caelum.cadastro.modelo.Prova;
 import br.com.caelum.fragment.DetalhesProvaFragment;
 import br.com.caelum.fragment.ListaProvasFragment;
@@ -49,7 +50,11 @@ public class ProvasActivity extends FragmentActivity {
 				.beginTransaction();
 		transaction.replace(R.id.provas_view, detalhesProva,
 				DetalhesProvaFragment.class.getCanonicalName());
-		transaction.addToBackStack(null);
+		Toast.makeText(this, "Tablet? " + isTablet(), Toast.LENGTH_LONG).show();
+
+		if (!isTablet()) {
+			transaction.addToBackStack(null);
+		}
 
 		transaction.commit();
 	}
