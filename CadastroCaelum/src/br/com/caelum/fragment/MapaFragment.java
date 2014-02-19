@@ -1,5 +1,7 @@
 package br.com.caelum.fragment;
 
-public class MapaFragment {
+import com.google.android.gms.maps.SupportMapFragment;
+
+public class MapaFragment extends SupportMapFragment{
 
 }
