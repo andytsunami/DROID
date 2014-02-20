@@ -59,6 +59,9 @@
             android:label="@string/app_name" >
         </activity>
         <activity 
+            android:name="br.com.caelum.cadastro.MostraAlunosProximosActivity"
+            android:label="@string/app_name"/>
+        <activity 
             android:name="br.com.caelum.cadastro.ProvasActivity"
             android:label="@string/app_name"
             ></activity>

@@ -53,15 +53,15 @@ public class ListaAlunosActivity extends Activity {
 			public void onItemClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
 
-				Intent edicao = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
-				
-				edicao.putExtra(Extras.ALUNO_SELECIONADO, (Aluno) listaAlunos.getItemAtPosition(posicao));
+				Intent edicao = new Intent(ListaAlunosActivity.this,
+						FormularioActivity.class);
+
+				edicao.putExtra(Extras.ALUNO_SELECIONADO,
+						(Aluno) listaAlunos.getItemAtPosition(posicao));
 				startActivity(edicao);
-				
+
 				Toast.makeText(ListaAlunosActivity.this,
-						"Caminho da imagem:  ",
-						Toast.LENGTH_SHORT).show();
-				
+						"Caminho da imagem:  ", Toast.LENGTH_SHORT).show();
 
 			}
 
@@ -73,10 +73,10 @@ public class ListaAlunosActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> adapter, View view,
 					int posicao, long id) {
 
-				alunoSelecionado = (Aluno) adapter
-						.getItemAtPosition(posicao);
-				Toast.makeText(ListaAlunosActivity.this, "Aluno: "
-						+ alunoSelecionado.getNome(), Toast.LENGTH_SHORT).show();
+				alunoSelecionado = (Aluno) adapter.getItemAtPosition(posicao);
+				Toast.makeText(ListaAlunosActivity.this,
+						"Aluno: " + alunoSelecionado.getNome(),
+						Toast.LENGTH_SHORT).show();
 
 				return false;
 			}
@@ -89,9 +89,8 @@ public class ListaAlunosActivity extends Activity {
 		List<Aluno> alunos = alunoDAO.getLista();
 		alunoDAO.fecha();
 
-
 		listaAlunos = (ListView) findViewById(R.id.lista_alunos);
-		 ListaAlunosAdapter adapter = new ListaAlunosAdapter(alunos,this);
+		ListaAlunosAdapter adapter = new ListaAlunosAdapter(alunos, this);
 
 		listaAlunos.setAdapter(adapter);
 	}
@@ -112,116 +111,123 @@ public class ListaAlunosActivity extends Activity {
 					FormularioActivity.class);
 			startActivity(intent);
 			return false;
-		} else if (item.getItemId() == R.id.menu_enviar_alunos){
-		new EnviaContatosTask(this).execute();
+		} else if (item.getItemId() == R.id.menu_enviar_alunos) {
+			new EnviaContatosTask(this).execute();
 			return false;
-			
-		} else if (item.getItemId() == R.id.menu_receber_provas){
-			Intent provas = new Intent(this,ProvasActivity.class);
+
+		} else if (item.getItemId() == R.id.menu_receber_provas) {
+			Intent provas = new Intent(this, ProvasActivity.class);
 			startActivity(provas);
+			return false;
+		} else if (item.getItemId() == R.id.menu_mapa) {
+			Intent mapa = new Intent(this, MostraAlunosProximosActivity.class);
+			startActivity(mapa);
 			return false;
 		} else {
 			return super.onOptionsItemSelected(item);
 		}
 
-	//	return super.onOptionsItemSelected(item);
+		// return super.onOptionsItemSelected(item);
 	}
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		MenuItem deletar = menu.add("Deletar");
-		
+
 		deletar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
-				
-				new AlertDialog.Builder(ListaAlunosActivity.this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Deletar?").
-				setMessage("Deseja mesmo deletar o aluno " + alunoSelecionado.getNome()).setPositiveButton("Manda Bala", 
-						new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								AlunoDAO alunoDAO = new AlunoDAO(ListaAlunosActivity.this);
-								
-								alunoDAO.deletar(alunoSelecionado);
-								alunoDAO.fecha();
-								carregaLista();
-							}
-						}).setNegativeButton("Melhor não", null).show();
-				 
+
+				new AlertDialog.Builder(ListaAlunosActivity.this)
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setTitle("Deletar?")
+						.setMessage(
+								"Deseja mesmo deletar o aluno "
+										+ alunoSelecionado.getNome())
+						.setPositiveButton("Manda Bala",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										AlunoDAO alunoDAO = new AlunoDAO(
+												ListaAlunosActivity.this);
+
+										alunoDAO.deletar(alunoSelecionado);
+										alunoDAO.fecha();
+										carregaLista();
+									}
+								}).setNegativeButton("Melhor não", null).show();
+
 				return false;
 			}
 		});
 
-		
 		MenuItem ligar = menu.add("Ligar");
-		
+
 		ligar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-			
+
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent intentLigar = new Intent(Intent.ACTION_CALL);
-				Uri discarPara = Uri.parse("tel:"+alunoSelecionado.getTelefone());
+				Uri discarPara = Uri.parse("tel:"
+						+ alunoSelecionado.getTelefone());
 				intentLigar.setData(discarPara);
 				startActivity(intentLigar);
 				return false;
 			}
 		});
-		
-		
-		
-		
-		
+
 		MenuItem enviarSms = menu.add("Enviar SMS");
 		enviarSms.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-			
+
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent intentSms = new Intent(Intent.ACTION_VIEW);
-				Uri smsPara = Uri.parse("sms:"+alunoSelecionado.getTelefone());
+				Uri smsPara = Uri.parse("sms:" + alunoSelecionado.getTelefone());
 				intentSms.setData(smsPara);
-				intentSms.putExtra("sms_body", "Bom dia " + alunoSelecionado.getNome()+"! ");
+				intentSms.putExtra("sms_body",
+						"Bom dia " + alunoSelecionado.getNome() + "! ");
 				startActivity(intentSms);
 				return false;
 			}
 		});
-		
+
 		MenuItem mapa = menu.add("Achar no mapa");
 		mapa.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-			
+
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent intentMapa = new Intent(Intent.ACTION_VIEW);
-				Uri mapaPara = Uri.parse("geo:0,0?q="+alunoSelecionado.getEndereco());
+				Uri mapaPara = Uri.parse("geo:0,0?q="
+						+ alunoSelecionado.getEndereco());
 				intentMapa.setData(mapaPara);
 				startActivity(intentMapa);
 				return false;
 			}
 		});
-		
-		
+
 		MenuItem navegarSite = menu.add("Navegar no site");
 		navegarSite.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-			
+
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent intentNavegador = new Intent(Intent.ACTION_VIEW);
 				String prefix = "";
-				if (!alunoSelecionado.getSite().startsWith("http://")){
+				if (!alunoSelecionado.getSite().startsWith("http://")) {
 					prefix = "http://";
 				}
-				
-				Uri siteAluno = Uri.parse(prefix+alunoSelecionado.getSite());
+
+				Uri siteAluno = Uri.parse(prefix + alunoSelecionado.getSite());
 				intentNavegador.setData(siteAluno);
 				startActivity(intentNavegador);
-				
+
 				return false;
 			}
 		});
-		
-		
+
 		menu.add("Enviar E-mail");
-		
+
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 
