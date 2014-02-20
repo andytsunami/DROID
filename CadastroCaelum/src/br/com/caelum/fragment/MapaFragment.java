@@ -34,6 +34,8 @@ public class MapaFragment extends SupportMapFragment {
 				MarkerOptions markerOptions = new MarkerOptions();
 				markerOptions.position(coordenada).title(aluno.getNome())
 						.snippet(aluno.getEndereco());
+				
+				getMap().addMarker(markerOptions);
 
 			}
 
