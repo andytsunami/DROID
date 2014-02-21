@@ -43,7 +43,7 @@ public class MapaFragment extends SupportMapFragment {
 
 	}
 
-	private void localizaNo(LatLng coordenada) {
+	public void localizaNo(LatLng coordenada) {
 		GoogleMap map = getMap();
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordenada, 17));
 	}

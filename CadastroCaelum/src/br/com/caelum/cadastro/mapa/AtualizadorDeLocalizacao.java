@@ -5,20 +5,23 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import br.com.caelum.fragment.MapaFragment;
 
 import com.google.android.gms.maps.model.LatLng;
 
 public class AtualizadorDeLocalizacao implements LocationListener {
 
 	private LocationManager manager;
+	private MapaFragment mapa;
 
-	public AtualizadorDeLocalizacao(Context context) {
+	public AtualizadorDeLocalizacao(Context context, MapaFragment mapa) {
+		this.mapa = mapa;
 		manager = (LocationManager) context
 				.getSystemService(Context.LOCATION_SERVICE);
 		String provider = LocationManager.GPS_PROVIDER;
-		long minTime = 20000; // milisegundos
-		long minDistance = 20; // metros
-		manager.requestLocationUpdates(provider, minTime, minDistance, this);
+		long tempoMinimo = 20000; // milisegundos
+		long distanciaMinima = 20; // metros
+		manager.requestLocationUpdates(provider, tempoMinimo, distanciaMinima, this);
 	}
 
 	public void cancela() {
@@ -29,6 +32,8 @@ public class AtualizadorDeLocalizacao implements LocationListener {
 	public void onLocationChanged(Location location) {
 		LatLng latLng = new LatLng(location.getLongitude(),
 				location.getLatitude());
+		this.mapa.localizaNo(latLng);
+		
 
 	}
 
